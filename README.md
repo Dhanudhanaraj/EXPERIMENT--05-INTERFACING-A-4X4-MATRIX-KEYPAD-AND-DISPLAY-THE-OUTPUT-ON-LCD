@@ -177,18 +177,227 @@ https://engineeringxpert.com/wp-content/uploads/2022/04/26.png
 
 ![image](https://user-images.githubusercontent.com/36288975/233856904-99eb708a-c907-4595-9025-c9dbd89b8879.png)
 
-## CIRCUIT DIAGRAM 
- 
 
 ## STM 32 CUBE PROGRAM :
+```
+Developed By:DHANUMALYA D
+Register Number:212222230030
+```
+```
+#include "main.h"
+#include <stdbool.h>
+#include "lcd.h"
 
-a
+bool col1,col2,col3,col4;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+void key();
+
+while (1)
+{
+    key();
+    HAL_Delay(1000);
+}
+
+void key()
+{
+	 Lcd_PortType ports[] = { GPIOA, GPIOA, GPIOA, GPIOA };
+	 Lcd_PinType pins[] = { GPIO_PIN_3, GPIO_PIN_2, GPIO_PIN_1, GPIO_PIN_0 };
+	 Lcd_HandleTypeDef lcd;
+	 lcd = Lcd_create(ports, pins, GPIOB, GPIO_PIN_0, GPIOB, GPIO_PIN_1, LCD_4_BIT_MODE);
+
+
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, GPIO_PIN_SET);
+
+	  col1 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_4);
+	  col2 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5);
+	  col3 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6);
+	  col4 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7);
+	  if(!col1)
+	  {
+		  Lcd_cursor(&lcd, 0,1);
+		  Lcd_string(&lcd, " 7 is pressed\n");
+		  col1=1;
+	  }
+	  else if(!col2)
+	  {
+	  		  Lcd_cursor(&lcd, 0,1);
+	  		  Lcd_string(&lcd, " 8 is pressed\n");
+	  		  col2=1;
+	  }
+	  else if(!col3)
+	  {
+	  	  		  Lcd_cursor(&lcd, 0,1);
+	  	  		  Lcd_string(&lcd, "9 is pressed\n");
+	  	  		  col3=1;
+	  }
+	  else if(!col4)
+	  {
+	  	  		  Lcd_cursor(&lcd, 0,1);
+	  	  		  Lcd_string(&lcd, "/ is pressed\n");
+	  	  		  col4=1;
+	  }
+	  HAL_Delay(200);
+
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, GPIO_PIN_SET);
+
+	  col1 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_4);
+	  col2 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5);
+	  col3 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6);
+	  col4 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7);
+	  	  if(!col1)
+	  	  {
+	  		  Lcd_cursor(&lcd, 0,1);
+	  		  Lcd_string(&lcd, " 4 is pressed\n");
+	  		  col1=1;
+	  	  }
+	  	  else if(!col2)
+	  	  {
+	  	  		  Lcd_cursor(&lcd, 0,1);
+	  	  		  Lcd_string(&lcd, " 5 is pressed\n");
+	  	  		  col2=1;
+	  	  }
+	  	  else if(!col3)
+	  	  {
+	  	  	  		  Lcd_cursor(&lcd, 0,1);
+	  	  	  		  Lcd_string(&lcd, " 6 is pressed\n");
+	  	  	  		  col3=1;
+	  	  }
+	  	  else if(!col4)
+	  	  {
+	  	  	  		  Lcd_cursor(&lcd, 0,1);
+	  	  	  		  Lcd_string(&lcd, " X is pressed\n");
+	  	  	  		  col4=1;
+	  	  }
+	  	HAL_Delay(200);
+
+	  	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_RESET);
+	  	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, GPIO_PIN_SET);
+
+	  	col1 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_4);
+	  	col2 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5);
+	  	col3 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6);
+	  	col4 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7);
+	  		  if(!col1)
+	  		  {
+	  			  Lcd_cursor(&lcd, 0,1);
+	  			  Lcd_string(&lcd, "1 is pressed\n");
+	  			  col1=1;
+	  		  }
+	  		  else if(!col2)
+	  		  {
+	  		  		  Lcd_cursor(&lcd, 0,1);
+	  		  		  Lcd_string(&lcd, " 2 is pressed\n");
+	  		  		  col2=1;
+	  		  }
+	  		  else if(!col3)
+	  		  {
+	  		  	  		  Lcd_cursor(&lcd, 0,1);
+	  		  	  		  Lcd_string(&lcd, "3 is pressed\n");
+	  		  	  		  col3=1;
+	  		  }
+	  		  else if(!col4)
+	  		  {
+	  		  	  		  Lcd_cursor(&lcd, 0,1);
+	  		  	  		  Lcd_string(&lcd, "- is pressed\n");
+	  		  	  		  col4=1;
+	  		  }
+	  		  HAL_Delay(200);
+
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_SET);
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, GPIO_PIN_RESET);
+
+	  		col1 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_4);
+	  		col2 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5);
+	  		col3 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6);
+	  		col4 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7);
+	  			  if(!col1)
+	  			  {
+	  				  Lcd_cursor(&lcd, 0,1);
+	  				  Lcd_string(&lcd, "ON is pressed/C\n");
+	  				  col1=1;
+	  			  }
+	  			  else if(!col2)
+	  			  {
+	  			  		  Lcd_cursor(&lcd, 0,1);
+	  			  		  Lcd_string(&lcd, " 0 is pressed\n");
+	  			  		  col2=1;
+	  			  }
+	  			  else if(!col3)
+	  			  {
+	  			  	  		  Lcd_cursor(&lcd, 0,1);
+	  			  	  		  Lcd_string(&lcd, " = is pressed\n");
+	  			  	  		  col3=1;
+	  			  }
+	  			  else if(!col4)
+	  			  {
+	  			  	  		  Lcd_cursor(&lcd, 0,1);
+	  			  	  		  Lcd_string(&lcd, " + is pressed\n");
+	  			  	  		  col4=1;
+	  			  }
+	  			  else
+	  			  {
+	  				  Lcd_cursor(&lcd,0,1);
+	  				  Lcd_string(&lcd,"no key pressed");
+	  			  }
+}
+
+HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2, GPIO_PIN_RESET);
+
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_RESET);
+
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+}
+
+```
 
 ## Output screen shots of proteus  :
- 
- 
+ ![pmc51](https://github.com/Dhanudhanaraj/EXPERIMENT--05-INTERFACING-A-4X4-MATRIX-KEYPAD-AND-DISPLAY-THE-OUTPUT-ON-LCD/assets/119218812/23c15958-0bbf-4299-8925-4d459bd3eb1d)
+
+ ![pmc52](https://github.com/Dhanudhanaraj/EXPERIMENT--05-INTERFACING-A-4X4-MATRIX-KEYPAD-AND-DISPLAY-THE-OUTPUT-ON-LCD/assets/119218812/0f0ae2dd-8627-483b-9d20-250856d23147)
+
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
- 
- 
+ ![pmc53](https://github.com/Dhanudhanaraj/EXPERIMENT--05-INTERFACING-A-4X4-MATRIX-KEYPAD-AND-DISPLAY-THE-OUTPUT-ON-LCD/assets/119218812/5c7618f6-818c-47e6-847c-792c76f0184c)
+
 ## Result :
 Interfacing a 4x4 keypad with ARM microcontroller are simulated in proteus and the results are verified.
